@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic YAML Reader</title>
+</head>
+<body>
+
+<h1>Projects</h1>
+<div id="projectsContainer"></div>
+
+<script>
+// Fetch the YAML file
+fetch('data.yaml')
+    .then(response => response.text())
+    .then(yamlText => {
+        // Parse YAML to JSON
+        const projects = jsyaml.load(yamlText);
+
+        // Get the container to display projects
+        const projectsContainer = document.getElementById('projectsContainer');
+
+        // Iterate over projects and display them
+        for (const [projectId, project] of Object.entries(projects.projects)) {
+            const projectElement = document.createElement('div');
+            projectElement.innerHTML = `
+                <h2>${project.title}</h2>
+                <p>${project.desc}</p>
+                <hr>
+            `;
+            projectsContainer.appendChild(projectElement);
+        }
+    })
+    .catch(error => console.error('Error fetching or parsing YAML:', error));
+</script>
+
+</body>
+</html>
