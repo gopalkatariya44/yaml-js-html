@@ -8,6 +8,9 @@ projects:
   project2:
     title: hello2
     desc: this is project2 desc
+  project3:
+    title: hello2
+    desc: this is project2 desc
 `;
 
     // Parse YAML to JSON
