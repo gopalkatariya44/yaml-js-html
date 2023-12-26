@@ -12,11 +12,19 @@
 
 <script>
 // Fetch the YAML file
-fetch('data.yaml')
-    .then(response => response.text())
-    .then(yamlText => {
+
+        const yamlContent = `
+        projects:
+            project1:
+                title: hello1
+                desc: this is project1 desc
+            project2:
+                title: hello2
+                desc: this is project2 desc
+    `;
+
         // Parse YAML to JSON
-        const projects = jsyaml.load(yamlText);
+        const projects = jsyaml.load(yamlContent);
 
         // Get the container to display projects
         const projectsContainer = document.getElementById('projectsContainer');
@@ -31,8 +39,6 @@ fetch('data.yaml')
             `;
             projectsContainer.appendChild(projectElement);
         }
-    })
-    .catch(error => console.error('Error fetching or parsing YAML:', error));
 </script>
 
 </body>
